@@ -6,21 +6,28 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium tracking-wide transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
+        // Navy with gold hairline border, hover lifts to lighter navy + brighter border
         default:
-          "bg-primary text-primary-foreground shadow-sm hover:bg-navy-800",
+          "border border-gold-600/70 bg-navy-900 text-white shadow-sm hover:bg-navy-700 hover:border-gold-500",
+        // Solid gold with navy text — premium primary CTA
         accent:
-          "bg-accent text-accent-foreground shadow-sm hover:bg-gold-500",
+          "bg-gold-500 text-navy-900 shadow-sm hover:bg-gold-400",
+        // Ghosted navy outline — secondary CTA
         outline:
-          "border border-input bg-background text-foreground hover:bg-muted",
-        ghost: "hover:bg-muted",
+          "border border-navy-900/70 bg-transparent text-navy-900 hover:bg-navy-900 hover:text-white",
+        // Gold outline on transparent — tertiary
+        goldOutline:
+          "border border-gold-500 bg-transparent text-gold-700 hover:bg-gold-500 hover:text-navy-900",
+        ghost: "text-navy-900 hover:bg-pearl",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-red-700",
-        link: "text-primary underline-offset-4 hover:underline",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/90",
+        link: "text-navy-900 underline-offset-4 hover:underline hover:text-gold-700",
+        secondary:
+          "bg-pearl text-navy-900 border border-beige hover:bg-ivory",
       },
       size: {
         sm: "h-9 rounded-md px-3 text-xs",

@@ -32,14 +32,14 @@ const NAV = [
 export function DashboardSidebar() {
   const path = usePathname();
   return (
-    <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r bg-navy-950 text-white lg:flex">
+    <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-navy-700/50 bg-navy-900 text-white lg:flex">
       <div className="flex h-20 items-center gap-3 border-b border-white/10 px-6">
-        <span className="grid h-9 w-9 place-items-center rounded-md bg-gold-500 text-sm font-bold text-navy-950">
+        <span className="grid h-9 w-9 place-items-center rounded-md border border-gold-500 bg-navy-950 text-sm font-bold text-gold-500">
           AU
         </span>
         <div>
-          <div className="font-serif text-base font-semibold">AU Hospital</div>
-          <div className="text-[10px] uppercase tracking-widest text-white/50">
+          <div className="font-serif text-base font-semibold leading-tight">AU Hospital</div>
+          <div className="text-[10px] uppercase tracking-[0.22em] text-gold-300/80">
             Admin Console
           </div>
         </div>
@@ -55,19 +55,27 @@ export function DashboardSidebar() {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition",
+                "relative flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
                 active
-                  ? "bg-white/10 text-white"
-                  : "text-white/70 hover:bg-white/5 hover:text-white"
+                  ? "bg-white/[0.06] text-white"
+                  : "text-white/65 hover:bg-white/[0.04] hover:text-white"
               )}
             >
-              <Icon className="h-4 w-4" />
+              {active && (
+                <span className="absolute inset-y-1 left-0 w-0.5 rounded-r bg-gold-500" />
+              )}
+              <Icon
+                className={cn(
+                  "h-4 w-4 transition-colors",
+                  active ? "text-gold-400" : "text-white/55"
+                )}
+              />
               <span>{item.label}</span>
             </Link>
           );
         })}
       </nav>
-      <div className="border-t border-white/10 p-4 text-xs text-white/50">
+      <div className="border-t border-white/10 p-4 text-xs text-white/45">
         Project Development Phase
       </div>
     </aside>

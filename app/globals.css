@@ -4,41 +4,46 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    /* Ivory background, deep navy ink (matches palette) */
+    --background: 60 16% 97%;          /* #FAFAF8 ivory */
+    --foreground: 215 58% 15%;         /* #10223B dark text */
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 215 58% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 215 58% 15%;
 
-    /* Navy primary */
-    --primary: 218 54% 22%;
-    --primary-foreground: 0 0% 100%;
+    /* Deep Navy #02132C */
+    --primary: 215 92% 9%;
+    --primary-foreground: 60 16% 97%;
 
-    --secondary: 215 25% 27%;
-    --secondary-foreground: 0 0% 100%;
+    /* Secondary Navy #081E3B */
+    --secondary: 215 76% 13%;
+    --secondary-foreground: 60 16% 97%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    /* Warm pearl as muted surface */
+    --muted: 25 18% 95%;               /* #F5F1EE */
+    --muted-foreground: 218 25% 27%;   /* #333F54 muted text */
 
-    /* Gold accent */
-    --accent: 42 72% 52%;
-    --accent-foreground: 222 47% 11%;
+    /* Main gold #C8903B */
+    --accent: 33 56% 51%;
+    --accent-foreground: 215 92% 9%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 28% 90%;
-    --input: 215 28% 90%;
-    --ring: 218 54% 22%;
+    /* Beige border #DDD2C8 */
+    --border: 28 21% 83%;
+    --input: 28 21% 83%;
+    --ring: 33 56% 51%;                /* gold focus ring */
 
     --radius: 0.75rem;
 
-    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-      "Helvetica Neue", Arial;
-    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+      Roboto, "Helvetica Neue", Arial;
+    --font-serif: "Playfair Display", "Cormorant Garamond", ui-serif, Georgia,
+      "Times New Roman", Times, serif;
   }
 }
 
@@ -55,6 +60,18 @@
   }
   h1, h2, h3, h4 {
     @apply font-serif tracking-tight;
+    color: inherit;
+  }
+  /* Bilingual: switch headings to a humanist sans for Arabic */
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3,
+  [dir="rtl"] h4 {
+    font-family: "IBM Plex Sans Arabic", "Noto Kufi Arabic", var(--font-sans);
+  }
+  ::selection {
+    background: theme("colors.gold.200");
+    color: theme("colors.navy.900");
   }
 }
 
@@ -62,10 +79,44 @@
   .section {
     @apply py-20 md:py-28;
   }
+  .section-tight {
+    @apply py-14 md:py-20;
+  }
   .container-wide {
     @apply mx-auto w-full max-w-7xl px-6;
   }
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.18em] text-gold-600;
+    @apply text-xs font-semibold uppercase tracking-[0.22em] text-gold-700;
+  }
+  /* Thin centered gold divider, ~64px */
+  .gold-divider {
+    @apply mx-auto mt-5 block h-px w-16 bg-gold-500;
+  }
+  .gold-divider-left {
+    @apply mt-5 block h-px w-16 bg-gold-500;
+  }
+  /* Premium card: ivory/white with gold top accent and beige border */
+  .card-premium {
+    @apply relative rounded-xl border border-beige bg-white p-6 shadow-premium transition;
+  }
+  .card-premium::before {
+    content: "";
+    @apply absolute inset-x-0 top-0 h-px rounded-t-xl;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      theme("colors.gold.500") 50%,
+      transparent 100%
+    );
+  }
+  .card-premium:hover {
+    @apply shadow-premium-lg;
+  }
+  /* Surface tint variants */
+  .surface-pearl { background-color: theme("colors.pearl"); }
+  .surface-ivory { background-color: theme("colors.ivory.DEFAULT"); }
+  .surface-navy {
+    background-color: theme("colors.navy.900");
+    color: white;
   }
 }

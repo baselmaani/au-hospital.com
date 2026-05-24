@@ -51,29 +51,44 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
         navy: {
-          50: "#f0f4fa",
-          100: "#dbe4f1",
-          200: "#b9c9e3",
-          300: "#8ea7cf",
-          400: "#5f7fb6",
-          500: "#3f609d",
-          600: "#304b7e",
-          700: "#243a63",
-          800: "#1a2a49",
-          900: "#0f1a30",
-          950: "#080f1c",
+          50: "#eaeef5",
+          100: "#c8d3e3",
+          200: "#94a6c2",
+          300: "#5f7aa1",
+          400: "#2f4d7a",
+          500: "#1a3258",
+          600: "#102544",
+          700: "#081E3B", // secondary navy
+          800: "#051838",
+          900: "#02132C", // deep navy (primary brand)
+          950: "#010a1a",
         },
         gold: {
-          50: "#fdf9ed",
-          100: "#faf0cc",
-          200: "#f4df95",
-          300: "#edc85b",
-          400: "#e6b134",
-          500: "#cf9420",
-          600: "#a8721a",
-          700: "#85541a",
-          800: "#6e421d",
-          900: "#5d381e",
+          50: "#fdf8ea",
+          100: "#fbeec5",
+          200: "#F7DC94", // light gold
+          300: "#E8C26B",
+          400: "#D7A84F",
+          500: "#C8903B", // main gold
+          600: "#B27F31",
+          700: "#9D6C27", // dark gold
+          800: "#7c531e",
+          900: "#5d3e17",
+        },
+        ivory: {
+          DEFAULT: "#FAFAF8",
+          50: "#FAFAF8",
+          100: "#F5F1EE", // warm pearl
+        },
+        pearl: "#F5F1EE",
+        beige: {
+          border: "#DDD2C8",
+          DEFAULT: "#DDD2C8",
+        },
+        ink: {
+          DEFAULT: "#10223B", // dark text
+          muted: "#333F54", // muted text
+          charcoal: "#110D0E",
         },
       },
       borderRadius: {
@@ -84,6 +99,11 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         serif: ["var(--font-serif)", "Georgia", "serif"],
+      },
+      boxShadow: {
+        premium: "0 1px 2px rgba(2,19,44,0.04), 0 8px 24px rgba(2,19,44,0.06)",
+        "premium-lg":
+          "0 4px 8px rgba(2,19,44,0.06), 0 24px 48px -12px rgba(2,19,44,0.12)",
       },
       keyframes: {
         "accordion-down": {

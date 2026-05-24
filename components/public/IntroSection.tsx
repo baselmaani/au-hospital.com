@@ -21,15 +21,16 @@ export function IntroSection({
   secondaryBtnLink,
 }: Props) {
   return (
-    <section id="project" className="section">
+    <section id="project" className="section surface-ivory">
       <div className="container-wide">
         <div className="mx-auto max-w-3xl text-center">
           <p className="eyebrow">{eyebrow ?? "Project Development Phase"}</p>
           <h1 className="mt-4 text-4xl font-semibold leading-tight text-navy-900 md:text-5xl lg:text-6xl">
             {title}
           </h1>
+          <span className="gold-divider" />
           {description ? (
-            <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-6 text-lg leading-relaxed text-ink-muted">
               {description}
             </p>
           ) : null}
