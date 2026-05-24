@@ -6,11 +6,16 @@ import { revalidatePath } from "next/cache";
 
 export async function uploadMediaAction(formData: FormData) {
   await requireAdmin();
-  const file = formData.get("file") as File | null;
-  if (!file || file.size === 0) return;
+  const files = formData.getAll("file") as File[];
+  const valid = files.filter((f) => f && f.size > 0);
+  if (!valid.length) return;
 
-  const kind = file.type === "application/pdf" ? "document" : "image";
-  await saveUpload(file, kind);
+  await Promise.all(
+    valid.map((file) => {
+      const kind = file.type === "application/pdf" ? "document" : "image";
+      return saveUpload(file, kind);
+    })
+  );
   revalidatePath("/dashboard/media");
 }
 

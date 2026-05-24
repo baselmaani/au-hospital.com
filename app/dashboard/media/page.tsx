@@ -23,12 +23,14 @@ export default async function MediaLibraryPage() {
           <form action={uploadMediaAction} className="flex flex-col gap-4 sm:flex-row sm:items-end">
             <div className="flex-1">
               <label className="text-sm font-medium text-foreground">
-                Image or PDF
+                Images or PDFs
+                <span className="ml-2 text-xs font-normal text-muted-foreground">(select multiple with Ctrl/Cmd+click)</span>
               </label>
               <input
                 type="file"
                 name="file"
                 accept="image/*,application/pdf"
+                multiple
                 required
                 className="mt-1.5 block w-full text-sm text-muted-foreground file:mr-4 file:rounded-md file:border-0 file:bg-navy-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-navy-800 hover:file:bg-navy-100"
               />
