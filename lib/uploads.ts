@@ -53,8 +53,25 @@ export async function saveUpload(file: File, kind: UploadKind): Promise<string> 
 }
 
 export async function deleteMedia(id: string, url: string): Promise<void> {
-  await del(url);
-  await prisma.media.delete({ where: { id } });
+  // Best-effort blob deletion. Only attempt for Vercel Blob URLs, and don't
+  // let storage errors (already deleted, legacy local /uploads/..., etc.)
+  // block removing the DB record.
+  const isBlobUrl = /^https?:\/\/[^/]*\.public\.blob\.vercel-storage\.com\//i.test(url);
+  if (isBlobUrl) {
+    try {
+      await del(url);
+    } catch (err) {
+      console.warn(`[deleteMedia] blob del failed for ${url}:`, err);
+    }
+  }
+
+  try {
+    await prisma.media.delete({ where: { id } });
+  } catch (err: unknown) {
+    // P2025 = record not found; treat as already deleted.
+    const code = (err as { code?: string })?.code;
+    if (code !== "P2025") throw err;
+  }
 }
 
 /**

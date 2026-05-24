@@ -44,8 +44,9 @@ export function MediaGrid({ items }: { items: MediaItem[] }) {
         await deleteMediaAction(fd);
         toast.success("File deleted");
         router.refresh();
-      } catch {
-        toast.error("Failed to delete file");
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : "Failed to delete file";
+        toast.error(msg);
       }
     });
   };
