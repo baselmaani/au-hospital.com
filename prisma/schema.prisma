@@ -1,0 +1,165 @@
+// Prisma schema for the AU Hospital investor website
+// docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String?
+  email     String   @unique
+  password  String
+  role      String   @default("ADMIN")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model HomePage {
+  id                    String   @id @default(uuid())
+  heroImage             String?
+  heroEyebrow           String?
+  heroSubtext           String?
+  title                 String
+  description           String?
+  introEyebrow          String?
+  primaryBtnText        String?
+  primaryBtnLink        String?
+  secondaryBtnText      String?
+  secondaryBtnLink      String?
+  sliderEyebrow         String?
+  sliderHeading         String?
+  highlightsEyebrow     String?
+  highlightsHeading     String?
+  galleryEyebrow        String?
+  galleryHeading        String?
+  galleryDescription    String?
+  investmentTitle       String?
+  investmentDescription String?
+  investmentBtnText     String?
+  investmentBtnLink     String?
+  stat1Label            String?
+  stat1Value            String?
+  stat2Label            String?
+  stat2Value            String?
+  stat3Label            String?
+  stat3Value            String?
+  stat4Label            String?
+  stat4Value            String?
+  documentsTitle        String?
+  documentsDescription  String?
+  documentsBtnText      String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model Slide {
+  id              String   @id @default(uuid())
+  title           String
+  description     String?
+  fullDescription String?
+  image           String?
+  buttonText      String?
+  buttonLink      String?
+  sortOrder       Int      @default(0)
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([sortOrder])
+}
+
+model Highlight {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  icon        String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sortOrder])
+}
+
+model GalleryImage {
+  id          String   @id @default(uuid())
+  title       String?
+  description String?
+  image       String
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sortOrder])
+}
+
+model Document {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  fileUrl     String
+  isPrivate   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Lead {
+  id                String   @id @default(uuid())
+  name              String
+  email             String
+  phone             String?
+  company           String?
+  message           String?
+  requestedDocument String?
+  status            String   @default("New")
+  notes             String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model SiteSettings {
+  id           String   @id @default(uuid())
+  projectName  String
+  logo         String?
+  contactEmail String?
+  contactPhone String?
+  whatsapp     String?
+  footerText   String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Media {
+  id        String   @id @default(uuid())
+  url       String
+  filename  String
+  mimeType  String
+  size      Int?
+  createdAt DateTime @default(now())
+}
+
+model Founder {
+  id             String   @id @default(uuid())
+  name           String
+  title          String?
+  photo          String?
+  shortBio       String?
+  message        String?
+  signatureImage String?
+  buttonText     String?
+  buttonLink     String?
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
